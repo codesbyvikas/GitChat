@@ -1,71 +1,53 @@
 const express = require("express");
 const session = require("express-session");
-require('./auth/google')
 const passport = require("passport");
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+const cors=require("cors");
 
+dotenv.config();
+require("./config/google");
+
+const authRoutes = require("./routes/auth");
+const profileRoutes = require("./routes/profile");
 
 const app = express();
-const PORT = 3000;
 
-//Session setup
-
-app.use(session({
-    secret: 'mysecret',
-    resave: false,
-    saveUninitialized: true,
+app.use(cors({
+  origin: "http://localhost:5173", 
+  credentials: true,              
 }));
 
+// MongoDB Connection
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => {
+    console.log("✅ Database connected");
+
+    console.log("📦 Using database:", mongoose.connection.name);
+
+  });
+// Session setup
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET || "defaultsecret",
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+
+// Passport Middleware
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get('/',(req, res) =>{
-    res.send("<a href='/auth/google'>Login with Google</a>");
+// Routes
+app.get("/", (req, res) => {
+  res.send("<a href='/auth/google'>Login with Google</a>");
 });
 
-app.get('/auth/google',
-  passport.authenticate(
-    'google',
-     { 
-        scope: ['profile', 'email']
-     }
-    ));
- 
-app.get('/auth/google/callback', 
-  passport.authenticate(
-    'google',
-     { 
-        failureRedirect: '/',
-        successRedirect: '/profile'
-     }
-    ),
-//   function(req, res) {
-//     // Successful authentication, redirect home.
-//     res.redirect('/');
-//   }
-);
+app.use("/auth", authRoutes);
+app.use("/profile", profileRoutes);
 
-function authCheck(req, res, next){
-    if(req.isAuthenticated()){
-        return next;
-    }
-    res.redirect('/');
-}
-
-app.get('/profile', authCheck,(req,res)=>{
-    
-    res.send(`
-            <h1>Welcome ${req.user.displayName}</h1>
-            <a href='/logout'>Logout</a>
-            `); 
-    
-})
-
-app.get("/logout", (req, res) =>{
-    req.logout(()=>{
-        res.redirect("/");
-    });
-});
-
-app.listen(PORT,()=>{
-    console.log(`server is listening at ${PORT}`);
-});
+// Server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
