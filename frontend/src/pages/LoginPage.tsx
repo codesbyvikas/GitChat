@@ -2,7 +2,7 @@ import React from 'react';
 
 const LoginPage = () => {
   const handleLogin = () => {
-    window.location.href = 'https://github.com/login/oauth/authorize?client_id=YOUR_CLIENT_ID';
+     window.location.href = `${import.meta.env.VITE_API_BASE_URL}/auth/google`;
   };
 
   return (
