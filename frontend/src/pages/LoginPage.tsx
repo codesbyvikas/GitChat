@@ -1,8 +1,13 @@
 import React from 'react';
 
 const LoginPage = () => {
-  const handleLogin = () => {
+
+  const handleGoogleLogin = () => {
      window.location.href = `${import.meta.env.VITE_API_BASE_URL}/auth/google`;
+  };
+
+  const handleGithubLogin = () => {
+     window.location.href = `${import.meta.env.VITE_API_BASE_URL}/auth/github`;
   };
 
   return (
@@ -18,7 +23,7 @@ const LoginPage = () => {
 
         <div className='flex flex-col justify-center item-center px-10'>
             <button
-            onClick={handleLogin}
+            onClick={handleGithubLogin}
             className="bg-white text-black flex items-center justify-center gap-2 px-6 py-3 rounded-md hover:bg-gray-100 transition cursor-pointer font-bold"
             >
             {/* GitHub SVG Icon */}
@@ -53,7 +58,7 @@ const LoginPage = () => {
 
         <div className='flex flex-col justify-center item-center px-10 '>
             <button
-            onClick={handleLogin}
+            onClick={handleGoogleLogin}
             className="bg-white text-black flex items-center justify-center gap-2 px-6 py-3 rounded-md hover:bg-gray-100 transition cursor-pointer font-bold"
             >
             {/* GitHub SVG Icon */}
