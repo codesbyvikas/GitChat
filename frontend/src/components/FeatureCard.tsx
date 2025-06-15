@@ -11,7 +11,7 @@ const FeatureCard = ({ title, description, Icon }: FeatureCardProps) => {
   return (
     <div
       className="
-        bg-[#1d2124] text-white flex flex-col items-start p-5 rounded-xl shadow-xl w-60
+        bg-[#1d2124] text-white flex flex-col items-start p-5 rounded-xl border-gray-800 shadow-md w-60
         hover:shadow-2xl transition-transform duration-300 transform hover:scale-105
         animate-fade-in-up cursor-pointer
       "

@@ -19,7 +19,7 @@ const LoginPage = () => {
           {/* <h1 className='text-3xl font-bold'>GitChat</h1> */}
           
         </div>
-        <h2 className='text-xl mb-6'>Welcome to GitChat</h2>
+        <h2 className='text-xl mb-6'>Welcome to <span className='text-2xl font-bold text-purple-500'>GitChat</span> </h2>
 
         <div className='flex flex-col justify-center item-center px-10'>
             <button

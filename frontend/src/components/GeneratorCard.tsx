@@ -36,7 +36,7 @@ const GeneratorCard: React.FC<GeneratorCardProps> = ({ Title }) => {
     }
   };
 
-  const handleDownload = () => {
+  const handleDownloadREADME = () => {
     const blob = new Blob([readmeContent], { type: 'text/markdown' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -45,6 +45,16 @@ const GeneratorCard: React.FC<GeneratorCardProps> = ({ Title }) => {
     a.click();
     URL.revokeObjectURL(url);
   };
+
+  const handleDownloadPdf = () => {
+  const blob = new Blob([readmeContent], { type: 'application/pdf' }); // pdfData should be a Uint8Array or ArrayBuffer
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'output.pdf';
+  a.click();
+  URL.revokeObjectURL(url);
+};
 
   return (
     <div className="flex flex-col items-center w-full max-w-2xl mx-auto rounded-2xl overflow-hidden shadow-lg bg-[#0d1117]">
@@ -75,7 +85,7 @@ const GeneratorCard: React.FC<GeneratorCardProps> = ({ Title }) => {
 
       {showCanvas && (
         <div className="bg-[#161b22] text-[#c9d1d9] w-full p-6 space-y-4 rounded-b-2xl">
-          <h2 className="text-2xl font-bold">Generated README</h2>
+          <h2 className="text-2xl font-bold">Generated {Title}</h2>
           <pre className="bg-[#0d1117] text-white font-mono p-4 rounded whitespace-pre-wrap overflow-x-auto text-sm border border-[#30363d]">
             {readmeContent}
           </pre>
@@ -86,9 +96,18 @@ const GeneratorCard: React.FC<GeneratorCardProps> = ({ Title }) => {
               Copy to Clipboard
             </button>
             <button
-              onClick={handleDownload}
+              onClick={
+                ()=>{
+                  if(Title=="README"){
+                    handleDownloadREADME();
+                  }
+                  else{
+                    handleDownloadPdf();
+                  }
+                }
+              }
               className="bg-purple-600 text-white px-4 py-2 rounded cursor-pointer hover:bg-purple-700 transition">
-              Download README.md
+              Download {Title}
             </button>
           </div>
         </div>

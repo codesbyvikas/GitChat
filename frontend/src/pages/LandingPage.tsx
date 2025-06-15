@@ -1,8 +1,12 @@
 import { MessageCircle, BookOpen, FileText } from 'lucide-react'
 import Footer from '@/components/Footer'
 import FeatureCard from '../components/FeatureCard'
+import { useNavigate } from 'react-router-dom'
 
 const LandingPage = () => {
+
+  const navigate = useNavigate();
+
   return (
     <div className='bg-[#0d1117] min-h-screen flex flex-col justify-between px-4'>
 
@@ -20,21 +24,30 @@ const LandingPage = () => {
         <h3 className='text-[#8b949e] text-xl italic'>Make your repositories talk</h3>
 
         <div className='flex flex-wrap justify-center items-center gap-10 mt-10'>
-          <FeatureCard 
+          <button >
+            <FeatureCard 
             title="Interactive Chat" 
             description="Chat with your GitHub repositories in real-time and get code insights."
             Icon={MessageCircle}
-          />
-          <FeatureCard 
+            />
+          </button>
+          
+          <button onClick={()=>{navigate("summary-generator")}}>
+            <FeatureCard 
             title="Summarize Repos" 
             description="Quickly get an overview of any codebase using AI summarization."
             Icon={BookOpen}
           />
-          <FeatureCard 
+          </button>
+          
+          <button onClick={()=>{navigate("readme-generator")}}>
+            <FeatureCard 
             title="Generate README" 
             description="Automatically create professional README.md files with ease."
             Icon={FileText}
-          />
+            />
+          </button>
+          
         </div>
       </div>
 
