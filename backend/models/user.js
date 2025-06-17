@@ -6,7 +6,7 @@ const userSchema = new mongoose.Schema({
   displayName: String,
   username: String,
   email: String,
-  profilePicture: String, // ✅ Add this line
+  profilePicture: String,
   provider: String,
 });
 

@@ -10,7 +10,7 @@ dotenv.config();
 
 // Passport Strategies
 require("./config/google");
-require("./config/github"); // ✅ GitHub strategy
+require("./config/github"); 
 
 // Route files
 const authRoutes = require("./routes/auth");
@@ -41,9 +41,9 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   cookie: {
-    secure: false, // true if using HTTPS in production
+    secure: false, 
     httpOnly: true,
-    maxAge: 1000 * 60 * 60 * 24, // 1 day
+    maxAge: 1000 * 60 * 60 * 24, 
   },
 }));
 
