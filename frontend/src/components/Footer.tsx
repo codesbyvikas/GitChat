@@ -1,8 +1,12 @@
 import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 const Footer = () => {
+
+  const navigate = useNavigate();
+
   return (
-    <footer className="bg-[#0d1117] text-[#8b949e] w-full py-8 border-t border-[#21262d]">
+    <footer className="bg-[#0d1117] text-[#8b949e] w-full py-8 border-t border-[#21262d] mt-5">
       <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
         
         {/* Logo */}
@@ -13,7 +17,16 @@ const Footer = () => {
 
         {/* Navigation Links */}
         <div className="flex space-x-6 text-sm">
-          <a href="#" className="hover:text-purple-400">Docs</a>
+          <a
+          href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            navigate('/documentation');
+          }}
+      className="hover:text-purple-400"
+    >
+      Docs
+    </a>
           <a href="#" className="hover:text-purple-400">Features</a>
           <a href="#" className="hover:text-purple-400">About</a>
         </div>

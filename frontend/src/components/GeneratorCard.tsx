@@ -57,6 +57,7 @@ const GeneratorCard: React.FC<GeneratorCardProps> = ({ Title }) => {
 };
 
   return (
+
     <div className="flex flex-col items-center w-full max-w-2xl mx-auto rounded-2xl overflow-hidden shadow-lg bg-[#0d1117]">
       
       <div className="flex justify-between items-center w-full px-4 py-2 bg-[#0d1117] border-b border-[#30363d]">
@@ -112,6 +113,7 @@ const GeneratorCard: React.FC<GeneratorCardProps> = ({ Title }) => {
           </div>
         </div>
       )}
+      
     </div>
   );
 };

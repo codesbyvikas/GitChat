@@ -1,6 +1,7 @@
 import { MessageCircle, BookOpen, FileText } from 'lucide-react'
 import Footer from '@/components/Footer'
 import FeatureCard from '../components/FeatureCard'
+import NavBar from '../components/NavBar'
 import { useNavigate } from 'react-router-dom'
 
 const LandingPage = () => {
@@ -8,7 +9,9 @@ const LandingPage = () => {
   const navigate = useNavigate();
 
   return (
+    
     <div className='bg-[#0d1117] min-h-screen flex flex-col justify-between px-4'>
+      <NavBar/>
 
       <div className='flex flex-col justify-center items-center pt-10'>
         <div className='flex items-center justify-center mb-4'>
